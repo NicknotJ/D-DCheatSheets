@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <h1>Ouch, I died:</h1>
+    <div v-if="!selectedSet">
+      <h2>A Character Creator for the Confused</h2>
+      <p>Specifically D&D's 5E: Lost Mines Starter Set</p> 
     </div>
-    <router-view />
+    <image-box></image-box>
+    <setting-button></setting-button>
+    <error-message></error-message>
   </div>
 </template>
+<script>
+import { mapState } from 'vuex';
+export default {
+  computed: mapState({
+    selectedSet: state => state.selectedSet
+  })
+  };
+</script>
+
 
 <style>
 #app {
