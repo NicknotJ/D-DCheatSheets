@@ -5,9 +5,10 @@
       <h2>A Character Creator for the Confused</h2>
       <p>Specifically D&D's 5E: Lost Mines Starter Set</p> 
     </div>
-    <image-box></image-box>
-    <setting-button></setting-button>
-    <error-message></error-message>
+    <image-box />
+    <setting-button />
+    <error-message />
+    <character-creator />
   </div>
 </template>
 <script>

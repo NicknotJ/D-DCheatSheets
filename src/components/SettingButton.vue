@@ -1,6 +1,6 @@
 <template>
-  <section class='settingButtonSection'>
-    <div role='container' class='settingButtonContainer' v-for="setting in settings" :key="setting.value" v-if="!selectedSet">
+  <section class='settingButtonSection' v-if="!selectedSet">
+    <div role='container' class='settingButtonContainer' v-for="setting in settings" :key="setting.value">
       <button v-on:click="selectSet($event)" type="submit" :value="setting.value"> {{ setting.name }} </button>
     </div>
   </section>

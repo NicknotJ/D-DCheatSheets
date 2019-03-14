@@ -15,11 +15,6 @@ export default {
 <!-- Inline styling with if statements for if it should be centered or not? -->
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-img{
-  position: relative;
-  max-width: 200px;
-  max-height: 200px;
-}
 
 
 </style>

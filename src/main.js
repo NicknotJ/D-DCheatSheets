@@ -6,11 +6,13 @@ import { mapState } from 'vuex';
 import ImageBox from "./components/ImageBox.vue";
 import SettingButton from "./components/SettingButton.vue";
 import ErrorMessage from "./components/ErrorMessage.vue";
+import CharacterCreator from "./components/CharacterCreator.vue";
 Vue.config.productionTip = false;
 
 Vue.component('image-box', ImageBox);
 Vue.component('setting-button', SettingButton);
 Vue.component('error-message', ErrorMessage);
+Vue.component('character-creator', CharacterCreator);
 
 new Vue({
   // router,

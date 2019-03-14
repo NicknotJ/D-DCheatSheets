@@ -11,7 +11,10 @@ export default new Vuex.Store({
     settings: [{name: "Lost Mines Starter", desc: "Starter Pack for 5th Edition", value: "lostMines"}, 
     {name: "Basic Rules (Online)", desc: "Online Rules for 5th Edition", value: "basicRules"}, {name: "Full Ruleset", desc: "Full 5th Edition", value: "fullRules"}],
     selectedSet: null,
-    errorMsg: null
+    errorMsg: null,
+    lostMinesJobs: [{name: 'CommonerFighter', value: 'commonerFighter'}, {name: 'NobleFighter', value: 'nobleFighter'}, {name: 'Rogue', value: 'rogue'}, {name: 'Wizard', value: 'wizard'}, {name: 'Cleric', value: 'cleric'}],
+    race: ['Human', 'Elf', 'Dwarf', 'Halfling'],
+    job: null
   },
   mutations: {
     changeJob(state, job){
