@@ -7,15 +7,17 @@
     </div>
     <image-box />
     <setting-button />
+    <character-creator v-if="!character"/>
+    <created-character v-if="character"/>
     <error-message />
-    <character-creator />
   </div>
 </template>
 <script>
 import { mapState } from 'vuex';
 export default {
   computed: mapState({
-    selectedSet: state => state.selectedSet
+    selectedSet: state => state.selectedSet,
+    character: state => state.character
   })
   };
 </script>
