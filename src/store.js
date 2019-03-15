@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { startingStats, levelUpStats } from './LostMinesData.js';
+import { startingStats, levelUpStats, startingWeapons, charAttacks } from './LostMinesData.js';
 
 //API calls to D&D App within the store (fetchSpells)
 //Don't return the results, updates the store (which should update components)
@@ -39,7 +39,8 @@ export default new Vuex.Store({
     lostMinesRace: ["Human", "Elf", "Dwarf", "Halfling"],
     job: null,
     character: null,
-    characterStats: null
+    characterStats: null,
+    weapons: null
   },
   mutations: {
     changeJob(state, job) {
@@ -73,8 +74,11 @@ export default new Vuex.Store({
       state.character.job = data[1];
       state.character.race = data[2];
       state.character.level = 1;
-      state.character.characterStats = startingStats(data[1])
+      state.character.characterStats = startingStats(data[1]);
       state.errorMsg = null;
+      state.weapons = startingWeapons(data[1]);
+      state.prof = 2;
+      state.attacks = charAttacks(state.weapons, state.prof, state.character.characterStats)
     },
     levelUp(state, num){
       let originalNum = state.character.level;

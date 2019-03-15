@@ -25,6 +25,47 @@ export const startingStats = (job) => {
     return statsArray;
 }
 
+export const charAttacks = (weapons, profValue, stats) => {
+  let attacks = [];
+  for(let x = 0; x < weapons.length; x++){
+    let statBonus = 0;
+    for(let y = 0; y < stats.length; y++){
+      if(weapons[x].type === stats[y].name){
+        statBonus = stats[y].modifier;
+      }
+    }
+    let attackBonus = profValue + statBonus;
+    let tempVar = `${weapons[x].name}: d20 + ${attackBonus}; ${weapons[x].range}`
+    //`${weapons[x].name}: d20 + attackBonus 
+    attacks.push(tempVar);
+  }
+  return attacks;
+}
+
+export const startingWeapons = (job) => {
+  let weapons = [];
+  if(job === 'cleric'){
+    weapons.push({name: "WarHammer", type:"Strength", prof:true, range:"melee" })
+    weapons.push({name: "HandAxe", type:"Strength", prof:true, range:"Ideal: <20ft Max: <60ft"})
+  }
+  if(job === 'rogue'){
+    weapons.push({name: "Shortsword", type:"Dexterity", prof:true, range:"melee"});
+    weapons.push({name: "Shortbow", type:"Dexterity", prof:true, range:"Ideal: <80ft Max: <320ft"})
+  }
+  if(job === 'wizard'){
+    weapons.push({name: "Shortword", type:"Dexterity", prof:true, range:"melee"});
+  }
+  if(job === 'commonerFighter'){
+    weapons.push({name: "Greatsword", type:"Strength", prof:true, range:"melee"});
+    weapons.push({name: "Longbow", type:"Dexterity", prof:true, range:"Ideal: <150ft Max: <600ft"})
+  }
+  if(job === 'nobleFighter'){
+    weapons.push({name: "Greataxe", type:"Strength", prof: true, range: "melee"});
+    weapons.push({name: "Javelin", type:"Strength", prof: true, range: "Ideal: <30ft Max: <120ft"});
+  }
+  return weapons;
+}
+
 //takes in the level, original stats, and job. Checks if stats are changed
 export const levelUpStats = (stats, job) => {
   console.log('levelUpStats ran for a ', job);

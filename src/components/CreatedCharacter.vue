@@ -5,17 +5,16 @@
       <h3>This is {{ character.name }}, the {{ character.race }} {{ character.job }}:</h3>
       <div role= "container" class="levelContainer">
           <p>Level: {{character.level}} </p>
-          <button v-on:click="levelUp($event)">Level Up</button>
+          <button v-on:click="levelUp">Level Up</button>
       </div>
       <button v-on:click="toggleCheatSheet">CheatSheet</button>
       <div v-if="cheatSheet" role='container' class="cheatSheetContainer">
-        <p>Your attack roll is a d20 + {{characterStats[0].modifier}}
+        <p v-for="attack in attacks"> {{ attack }} </p>
+        <p>Passive Perception: {{10 + characterStats[4].modifier}}</p>
         <p>The DM doesn't love you and never will</p> 
       </div>
       <ul>
-        <div v-for="stats in characterStats">
-          <li>{{stats.name}}: {{stats.value}} Modifier: {{stats.modifier}}</li>
-        </div>
+        <li v-for="stats in characterStats">{{stats.name}}: {{stats.value}} Modifier: {{stats.modifier}}</li>
       </ul>
 
   </div>
@@ -26,17 +25,21 @@ import { mapState } from 'vuex';
 export default {
   computed: mapState({
     character: state => state.character,
-    characterStats: state => state.character.characterStats
+    characterStats: state => state.character.characterStats,
+    weapons: state => state.weapons,
+    attacks: state => state.attacks
   }),
   data: function(){
     return {
     cheatSheet: false
     }
   },
-  methods: { 
-    levelUp(e){
-      e.preventDefault();
+  methods: {
+    // ...mapActions('', ['checkLevelUpStats']), (might be able to pass in multiple parameters)
+    levelUp(){
       //disable button?
+      //{job, level, character: this.character} passed in as a parameter
+      //allows us to break it doooooooown
       this.$store.dispatch('checkLevelUpStats', this.character);
     },
     toggleCheatSheet(){
