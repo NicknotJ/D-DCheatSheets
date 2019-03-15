@@ -1,6 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { startingStats } from './LostMinesData.js';
+import { startingStats, levelUpStats } from './LostMinesData.js';
+
+//API calls to D&D App within the store (fetchSpells)
+//Don't return the results, updates the store (which should update components)
 
 Vue.use(Vuex);
 //Future: Support Editions (5E vs Pathfinder vs 3.5?)
@@ -8,7 +11,7 @@ export default new Vuex.Store({
   state: {
     pictureRef:
       "https://i.pinimg.com/originals/ee/3d/9f/ee3d9f672d00470af47a7165ee767c4e.jpg",
-    pictureAlt: "Haha, I don't know how any of this works!",
+    pictureAlt: "Picture of a Tavern",
     pictureProps: "From the Internet",
     settings: [
       {
@@ -69,7 +72,17 @@ export default new Vuex.Store({
       state.character.name = data[0];
       state.character.job = data[1];
       state.character.race = data[2];
-      state.characterStats = startingStats(data[1]);
+      state.character.level = 1;
+      state.character.characterStats = startingStats(data[1])
+      state.errorMsg = null;
+    },
+    levelUp(state, num){
+      let originalNum = state.character.level;
+      let newNum = originalNum + num;
+      state.character = { ...state.character, level: newNum };
+    },
+    changeStats(state, stats){
+      state.character = { ...state.character, characterStats: stats};
     }
   },
   actions: {
@@ -82,6 +95,15 @@ export default new Vuex.Store({
         commit("setErrorMsg", null);
         return commit("changeSet", set);
       }
+    },
+    checkLevelUpStats({ commit }, character){
+      console.log(character.level);
+      console.log(character.job);
+      commit("levelUp", 1);
+      if(character.level + 1 === 4){
+        commit('changeStats', levelUpStats(character.characterStats, character.job));
+      }
     }
+
   }
 });

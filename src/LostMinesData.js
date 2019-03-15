@@ -24,3 +24,35 @@ export const startingStats = (job) => {
     }
     return statsArray;
 }
+
+//takes in the level, original stats, and job. Checks if stats are changed
+export const levelUpStats = (stats, job) => {
+  console.log('levelUpStats ran for a ', job);
+  console.log('Initial stats are:', stats);
+  if(job === 'rogue'){
+    stats[1].value = stats[1].value + 1;
+    stats[1].modifier = stats[1].modifier + 1;
+    return stats;
+  }
+  if(job === 'cleric'){
+    stats[4].value = stats[4].value + 1;
+    stats[4].modifier = stats[4].modifier + 1;
+    return stats;
+  }
+  if(job === 'nobleFighter'){
+    stats[0].value = stats[0].value + 1;
+    stats[0].modifier = stats[0].modifier + 1;
+    return stats;
+  }
+  if(job === 'commonerFighter'){
+    stats[1].value = stats[1].value + 1;
+    stats[1].modifier = stats[1].modifier + 1;
+    return stats;
+  }
+  if(job === 'wizard'){
+    stats[3].value = stats[3].value + 1;
+    stats[3].modifier = stats[3].modifier + 1;
+    return stats;
+  }
+  return stats;
+}

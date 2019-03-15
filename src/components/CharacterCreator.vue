@@ -34,12 +34,14 @@ export default {
   },
     clickGenerate(event){
       event.preventDefault();
+      console.log(event);
       let name = event.path[1][0].value;
       if(name === null || name === ''){
         return this.$store.commit('setErrorMsg', 'Please Input a Name');
       }
       let job = event.path[1][1].value;
-      if(job === null){
+      
+      if(job === null || job === ''){
         return this.$store.commit('setErrorMsg', 'Please select a Class');
       }
       let race = event.path[1][2].value;
